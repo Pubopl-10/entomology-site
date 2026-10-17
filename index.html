@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир энтомологии</title>
+    <style>
+        /* Импорт атмосферных шрифтов */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;600&display=swap');
+
+        body {
+            font-family: 'EB Garamond', 'Georgia', serif;
+            line-height: 1.8;
+            color: #c9c0b0; /* Пыльно-золотистый цвет текста */
+            background-color: #0d1117; /* Глубокий темный фон */
+            background-image: radial-gradient(circle at 50% 0%, #1a202c 0%, #0d1117 70%);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Декоративные элементы */
+        ::selection {
+            background: #3b2e1e;
+            color: #e0c9a6;
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px 40px 20px;
+            position: relative;
+        }
+
+        header::after {
+            content: "❦";
+            display: block;
+            color: #5a4a3a;
+            font-size: 2em;
+            margin-top: 20px;
+            opacity: 0.6;
+        }
+
+        header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5em;
+            font-weight: 600;
+            color: #e0c9a6;
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(224, 201, 166, 0.3), 0 0 40px rgba(224, 201, 166, 0.1);
+        }
+
+        header p.subtitle {
+            font-style: italic;
+            color: #8a7a6a;
+            font-size: 1.2em;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Навигация */
+        nav {
+            background-color: rgba(20, 25, 35, 0.8);
+            border-top: 1px solid #3b2e1e;
+            border-bottom: 1px solid #3b2e1e;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav a {
+            color: #a89a88;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #e0c9a6;
+            text-shadow: 0 0 10px rgba(224, 201, 166, 0.5);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #e0c9a6;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Основной контейнер */
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 40px 50px;
+            background: rgba(22, 28, 38, 0.6);
+            border: 1px solid #2a3442;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        /* Заголовки */
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2em;
+            font-weight: 600;
+            color: #d4b896;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #3b2e1e;
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #b8a080;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* Буквица */
+        .first-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5em;
+            float: left;
+            line-height: 0.8;
+            padding-right: 12px;
+            padding-top: 5px;
+            color: #d4b896;
+            text-shadow: 0 0 15px rgba(212, 184, 150, 0.4);
+        }
+
+        p {
+            margin: 1em 0;
+            text-align: justify;
+            text-indent: 1.5em;
+        }
+
+        p.no-indent {
+            text-indent: 0;
+        }
+
+        /* Ссылки в тексте */
+        .mystic-link {
+            color: #b8a080;
+            text-decoration: none;
+            border-bottom: 1px dotted #5a4a3a;
+            transition: all 0.3s ease;
+        }
+
+        .mystic-link:hover {
+            color: #e0c9a6;
+            border-bottom-color: #e0c9a6;
+            text-shadow: 0 0 8px rgba(224, 201, 166, 0.5);
+        }
+
+        /* Цитаты */
+        blockquote {
+            border-left: 2px solid #5a4a3a;
+            padding: 15px 25px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #a89a88;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+        }
+
+        blockquote::before {
+            content: "“";
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4em;
+            color: #3b2e1e;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            line-height: 1;
+        }
+
+        blockquote p {
+            text-indent: 0;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Инфобокс */
+        .infobox {
+            float: right;
+            width: 300px;
+            background: rgba(15, 20, 28, 0.9);
+            border: 1px solid #3b2e1e;
+            padding: 15px;
+            margin: 0 0 25px 30px;
+            font-size: 0.9em;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .infobox-title {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #d4b896;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #3b2e1e;
+            padding-bottom: 10px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #3b2e1e;
+            filter: sepia(30%) brightness(0.8);
+            transition: filter 0.5s ease;
+        }
+
+        .infobox img:hover {
+            filter: sepia(0%) brightness(1);
+        }
+
+        .infobox-caption {
+    font-size: 18px; /* Чёткий крупный размер */
+    color: #8a7a6a;
+    text-align: center;
+    font-style: italic;
+    margin-top: 8px;
+}
+
+        .infobox p {
+            text-indent: 0;
+            margin: 8px 0;
+            font-size: 0.9em;
+        }
+
+        .infobox strong {
+            color: #b8a080;
+        }
+
+        /* Списки */
+        ul, ol {
+            margin: 1em 0 1.5em 2em;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 0.8em;
+            text-align: justify;
+        }
+
+        li::marker {
+            color: #5a4a3a;
+        }
+
+        /* Блок "Тайны" */
+        .fact-box {
+            background: linear-gradient(135deg, rgba(30, 25, 20, 0.8), rgba(15, 20, 28, 0.8));
+            border: 1px solid #3b2e1e;
+            border-left: 4px solid #b8a080;
+            padding: 25px;
+            margin: 40px 0;
+            clear: both;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .fact-box h3 {
+            margin-top: 0;
+            color: #d4b896;
+            border-bottom: 1px solid #3b2e1e;
+            padding-bottom: 10px;
+        }
+
+        .fact-box ul {
+            margin-bottom: 0;
+        }
+
+        /* Подвал */
+        footer {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #5a4a3a;
+            border-top: 1px solid #2a3442;
+        }
+
+        /* Разделитель */
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #3b2e1e, transparent);
+            margin: 40px 0;
+        }
+
+        /* Сброс обтекания */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+                margin: 20px;
+            }
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0 0 20px 0;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            nav a {
+                display: inline-block;
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Энтомология</h1>
+        
+    </header>
+
+    <nav>
+        <a href="#prologue">Пролог</a>
+        <a href="#history">История</a>
+        <a href="#sections">Разделы</a>
+        <a href="#methods">Искусство ловли</a>
+        <a href="#night">Ночные тропы</a>
+        
+    </nav>
+
+    <main>
+
+        <!-- Инфобокс -->
+        <aside class="infobox">
+            <div class="infobox-title">Insecta</div>
+        
+            <img src="https://i.pinimg.com/1200x/a8/a7/ef/a8a7efeb8a89ab499f6830579c309e7d.jpg" alt="Эвпаторус пятирогий ">
+            <div class="infobox-caption">Эвпаторус пятирогий </div>
+            <hr style="border: 0; border-top: 1px solid #3b2e1e; margin: 15px 0;">
+            <p><strong>Царство:</strong> Животные</p>
+            <p><strong>Тип:</strong> Членистоногие</p>
+            <p><strong>Класс:</strong> Насекомые</p>
+            <p><strong>Число видов:</strong> ~7 </p>
+            <p><strong>Возраст:</strong> ~140-150 млн лет</p>
+        </aside>
+
+        <article>
+            <section id="prologue">
+                <h2>Пролог.</h2>
+                <p>
+                    <span class="first-letter">Э</span><strong>нтомология</strong> — это раздел зоологии, который занимается изучением насекомых. Это одна из самых обширных и важных областей биологии, поскольку насекомые составляют более половины всех известных живых организмов на нашей планете. Они встречаются практически везде: в лесах, полях, пустынях, горах, водоемах и даже в наших домах.
+                </p>
+                <p>
+                    Для многих людей энтомология — это не просто наука, а серьезное увлечение. Изучение насекомых требует терпения, внимательности и наблюдательности. Это хобби позволяет лучше понять окружающий мир, увидеть сложные экосистемы там, где обычный человек проходит мимо, не замечая ничего интересного.
+                </p>
+                <p>
+                    Насекомые играют ключевую роль в природе. Они опыляют растения, участвуют в разложении органических остатков, служат пищей для птиц, рыб и млекопитающих, а также регулируют численность других организмов. Без них многие экосистемы просто не смогли бы существовать. Именно поэтому изучение энтомологии имеет не только научное, но и практическое значение для сельского хозяйства, медицины и охраны природы.
+                </p>
+                <p>
+                    В этой статье мы рассмотрим историю развития энтомологии, основные разделы этой науки, методы сбора и изучения насекомых, а также поговорим о том, почему это увлечение может стать делом всей жизни для многих людей.
+                </p>
+            
+            </section>
+
+            <hr>
+
+            <section id="history">
+                <h2>История.</h2>
+                <p>
+                    Путь человечества к пониманию насекомых был долгим и тернистым. Древние люди боялись саранчу и обожествляли скарабеев. В Древнем Египте жук-скарабей считался символом возрождения и катил солнце по небосводу. В Древней Греции <strong>Аристотель</strong>, этот титан мысли, впервые попытался систематизировать знания о «кровяных» и «бескровных» существах, описав метаморфоз бабочек.
+                </p>
+                <blockquote>
+                    <p>«Некоторые насекомые производят потомство, подобное себе, другие же — сначала червя, который позднее превращается в крылатое существо. И в этом превращении сокрыта великая тайна жизни».</p>
+                    <p style="text-align: right; font-style: normal; color: #8a7a6a;">— Аристотель, «История животных»</p>
+                </blockquote>
+                <p>
+                    В эпоху Средневековья знания о насекомых обросли мифами и суевериями. Их считали порождениями дьявола или, наоборот, божественными знамениями. Лишь в XVII веке, с изобретением микроскопа, завеса тайны начала приподниматься. <strong>Ян Сваммердам</strong> и <strong>Марчелло Мальпиги</strong> увидели то, что было скрыто от глаз: сложное строение глаз, трахеи, дышащие воздухом, и крошечные сердца, гонящие гемолимфу.
+                </p>
+                <p>
+                    Карл Линней в XVIII веке навёл порядок в этом хаосе, дав каждому виду имя на латыни. С тех пор энтомология перестала быть забавой чудаков и превратилась в серьёзную науку, ветвящуюся на десятки направлений.
+                </p>
+            </section>
+
+            <hr>
+
+            <section id="sections">
+                <h2>Разделы: Карта микрокосма</h2>
+                <p>
+                    Мир насекомых настолько огромен, что изучать его целиком невозможно. Энтомологи разделились на кланы, каждый из которых посвятил себя определённой группе существ.
+                </p>
+                
+                <h3>Колеоптерология: Тайны панцирных</h3>
+                <p>
+                    Жуки — самый многочисленный отряд. Их панцирь — это броня, созданная эволюцией за миллионы лет. Колеоптерологи проводят ночи в лесах, раскладывая ферментные ловушки, чтобы приманить редких усачей или жужелиц. Среди них есть виды, которые светятся в темноте, и виды, которые могут выжить в пустыне без воды месяцами.
+                </p>
+
+                <h3>Лепидоптерология: Крылатые призраки</h3>
+                <p>
+                    Бабочки и мотыльки — самые эстетичные объекты изучения. Их крылья покрыты чешуйками, которые преломляют свет, создавая иллюзию цвета. Лепидоптерологи знают: чтобы увидеть редкий вид, нужно знать не только место, но и время. Некоторые бабочки вылетают лишь на несколько часов в году, чтобы найти партнёра и исчезнуть.
+                </p>
+
+                <h3>Мирмекология: Империи под землёй</h3>
+                <p>
+                    Муравьи — вершина социальной эволюции среди насекомых. Они строят города, ведут войны, разводят тлю, как люди разводят коров. Мирмекологи проводят годы, наблюдая за одной колонией, чтобы понять, как распределяются роли и как принимаются решения.
+                </p>
+
+                <h3>Прикладные дисциплины</h3>
+                <ul>
+                    <li><strong>Судебная энтомология</strong> — наука, которая позволяет определить время смерти по стадиям развития личинок мух. Это мрачное, но необходимое знание.</li>
+                    <li><strong>Медицинская энтомология</strong> — изучает переносчиков болезней: комаров, москитов, мух цеце. Здесь энтомология спасает миллионы жизней.</li>
+                    <li><strong>Сельскохозяйственная энтомология</strong> — вечная война человека и вредителей. Здесь решается судьба урожаев и продовольственной безопасности.</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section id="methods">
+                <h2>Искусство ловли.</h2>
+                <p>
+                    Чтобы поймать насекомое, недостаточно быстроты рук. Нужно понимать его природу. Энтомолог — это охотник, который знает повадки своей добычи.
+                </p>
+                
+                <h3>Инструменты</h3>
+                <ul>
+                    <li><strong>Сачок</strong> — продолжение руки. Лёгкий, прочный, с сеткой из нейлона. Им косят по траве, ловят в воздухе, накрывают камни.</li>
+                    <li><strong>Эксгаустер</strong> — стеклянная трубка с резиновой грушей. Через неё всасывают мелких насекомых, которые слишком хрупки для пинцета.</li>
+                    <li><strong>Ферментная ловушка</strong> — банка с забродившим соком, подвешенная на дереве. Ночью она собирает тех, кто летит на запах сладкого и пьянящего.</li>
+                    <li><strong>Энтомологический зонт</strong> — белый кусок ткани, растянутый на каркасе. Под ним выбивают насекомых с веток, и они падают, как звёзды.</li>
+                </ul>
+
+                <h3>Фиксация и хранение</h3>
+                <p>
+                    Пойманное насекомое нужно сохранить. Для этого используют морилки с этилацетатом. Затем насекомое накалывают на булавку и расправляют на расправилке. Это кропотливая работа, требующая терпения и твёрдой руки. Коллекция — это не просто набор мёртвых тел, это библиотека жизни, где каждый экземпляр хранит историю своего вида.
+                </p>
+            </section>
+
+            <hr>
+
+             <section id="night">
+                <h2>Ночные тропы: Охота при свете лампы</h2>
+                <p>
+                    Ночь — это лучшее время для наблюдения за насекомыми. Когда становится темно и люди ложатся спать, просыпаются ночные виды. Многие бабочки, жуки и мотыльки активны именно ночью. Они летят на свет, потому что используют его для ориентации в пространстве.
+                </p>
+                <p>
+                    Чтобы поймать или просто рассмотреть их, энтомологи используют простой метод. Нужно натянуть белую простыню между двумя деревьями и поставить перед ней яркую лампу. Насекомые слетаются на свет и садятся на ткань. Через некоторое время простыня становится похожа на живую картину: тут и бабочки с интересными узорами, и жуки с рогами, и пушистые мотыльки. Это очень увлекательное зрелище.
+                </p>
+                <p>
+                    Такие ночные вылазки показывают, что энтомология — это не просто интересное хобби. Она учит замечать красоту вокруг нас и видеть жизнь даже в самых маленьких существах, мимо которых обычно проходят не замечая.
+                </p>
+            </section>
+
+            
+            <div class="fact-box">
+                <h3>Тайны, скрытые в хитине</h3>
+                <ul>
+                    <li><strong>Жук-навозник</strong> способен тянуть груз в 1141 раз тяжелее собственного тела. Если бы человек обладал такой силой, он мог бы тянуть шесть автобусов.</li>
+                    <li><strong>Стрекозы</strong> — древнейшие хищники. Их предки летали ещё 300 миллионов лет назад, задолго до появления динозавров. Их глаза состоят из 30 000 фасеток.</li>
+                    <li><strong>Бабочки-монархи</strong> совершают миграции на 4000 километров, ориентируясь по солнцу и магнитному полю Земли. Никто не знает точно, как они находят дорогу.</li>
+                    <li><strong>Муравьи-листорезы</strong> не едят листья. Они скармливают их грибам, которые растут в их подземных садах. Это самый древний пример сельского хозяйства на Земле.</li>
+                    <li><strong>Светлячки</strong> светятся благодаря химической реакции с участием люциферина. Это холодный свет, КПД которого близок к 100%.</li>
+                </ul>
+            </div>
+
+            <section id="links">
+                
+        </article>
+    </main>
+
+    <footer>
+        <p>Эта страница — студенческая практическая работа. Данные могут быть не точными.</p>
+        <p>© 2026.</p>
+    </footer>
+
+</body>
+</html>
